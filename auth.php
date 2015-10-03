@@ -578,6 +578,7 @@ class auth_plugin_googleoauth2 extends auth_plugin_base {
 
         echo '</td></tr>';
 
+
         // Block field options.
         // Hidden email options - email must be set to: locked.
         echo html_writer::empty_tag('input', array('type' => 'hidden', 'value' => 'locked',
@@ -592,7 +593,78 @@ class auth_plugin_googleoauth2 extends auth_plugin_base {
         print_auth_lock_options('googleoauth2', $userfields, get_string('auth_fieldlocks_help', 'auth'), false, false);
 
         echo '</table>';
+
+        // Calculate how many login per providers.
+        $providerstats = (object) $this->get_stats();
+        echo '
+<center>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          [\'Provider\', \'Login total\'],
+          [\'Google\', ' . $providerstats->google . '],
+          [\'Facebook\', ' . $providerstats->facebook . ' ],
+          [\'Github\',  ' . $providerstats->github . ' ],
+          [\'Linkedin\', ' . $providerstats->linkedin . ' ],
+          [\'Microsoft\', ' . $providerstats->microsoft . ' ],
+          [\'Dropbox\', ' . $providerstats->dropbox . ' ],
+          [\'VK\', ' . $providerstats->vk . ' ],
+          [\'Battle.net\', ' . $providerstats->battlenet . ' ],
+          [\'Other Moodle auth\',    ' . $providerstats->moodle . ' ]
+        ]);
+
+        var options = {
+          title: \'Login statistics for the last ' . $providerstats->periodindays. ' days\',
+          is3D: true,
+          slices: {
+            0: { color: \'#D50F25\' },
+            1: { color: \'#3b5998\' },
+            2: { color: \'#eee\', fontcolor: \'black\'},
+            3: { color: \'#007bb6\'},
+            4: { color: \'#7cbb00\'},
+            5: { color: \'#007ee5\'},
+            6: { color: \'#45668e\'},
+            7: { color: \'#00B4FF\'},
+            8: { color: \'#ee7600\'}
+          }
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById(\'piechart\'));
+
+        chart.draw(data, options);
+      }
+    </script>
+ <div id="piechart" style="width: 900px; height: 500px;"></div>
+</center>
+        ';
     }
+
+    /**
+     * Retrieve the login provider stats.
+     */
+    public function get_stats() {
+        // Retrieve the periodindays. (check the logs)
+ 
+        // Retrieve the moodle auth stats.
+
+        // Retrieve the provider stats.
+
+        return array('google' => 11,
+                     'facebook' => 5,
+                     'github' => 2,
+                     'linkedin' => 2,
+                     'microsoft' => 4,
+                     'dropbox' => 1,
+                     'vk' => 8,
+                     'battlenet' => 1,
+                     'moodle' => 7,
+                     'periodindays' => 60);
+    }
+
 
     /**
      * Processes and stores configuration data for this authentication plugin.
