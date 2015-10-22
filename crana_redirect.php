@@ -15,5 +15,5 @@
 // along with Oauth2 authentication plugin for Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 require('../../config.php');
-require_once($CFG->dirroot . '/auth/cranaoauth2/lib.php');
-cranaoauth2_provider_redirect('crana');
+require_once($CFG->dirroot . '/auth/googleoauth2/lib.php');
+googleoauth2_provider_redirect('crana');

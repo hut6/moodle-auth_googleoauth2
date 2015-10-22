@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Oauth2 authentication plugin for Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-require_once($CFG->dirroot . '/auth/cranaoauth2/vendor/autoload.php');
+require_once($CFG->dirroot . '/auth/googleoauth2/vendor/autoload.php');
 
 class provideroauth2crana extends \League\OAuth2\Client\Provider\AbstractProvider {
 
@@ -38,10 +38,10 @@ class provideroauth2crana extends \League\OAuth2\Client\Provider\AbstractProvide
         global $CFG;
 
         parent::__construct([
-            'clientId'      => get_config('auth/cranaoauth2', $this->name . 'clientid'),
-            'clientSecret'  => get_config('auth/cranaoauth2', $this->name . 'clientsecret'),
+            'clientId'      => get_config('auth/googleoauth2', $this->name . 'clientid'),
+            'clientSecret'  => get_config('auth/googleoauth2', $this->name . 'clientsecret'),
             'redirectUri'   => preg_replace('/http:/',
-                'https:', $CFG->httpswwwroot .'/auth/cranaoauth2/' . $this->name . '_redirect.php', 1),
+                'https:', $CFG->httpswwwroot .'/auth/googleoauth2/' . $this->name . '_redirect.php', 1),
             'scopes'        => $this->scopes
         ]);
     }
@@ -54,8 +54,8 @@ class provideroauth2crana extends \League\OAuth2\Client\Provider\AbstractProvide
      * @throws dml_exception
      */
     public function isenabled() {
-        return (get_config('auth/cranaoauth2', $this->name . 'clientid')
-            && get_config('auth/cranaoauth2', $this->name . 'clientsecret'));
+        return (get_config('auth/googleoauth2', $this->name . 'clientid')
+            && get_config('auth/googleoauth2', $this->name . 'clientsecret'));
     }
 
     /**
@@ -67,7 +67,7 @@ class provideroauth2crana extends \League\OAuth2\Client\Provider\AbstractProvide
      * @throws coding_exception
      */
     public function html_button($authurl, $providerdisplaystyle) {
-        return cranaoauth2_html_button($authurl, $providerdisplaystyle, $this);
+        return googleoauth2_html_button($authurl, $providerdisplaystyle, $this);
     }
 
     /**
