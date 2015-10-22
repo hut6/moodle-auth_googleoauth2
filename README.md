@@ -5,10 +5,17 @@ This plugin is a modification of the main OAuth2 Moodle plugin to enable OAuth2 
 2. in the Moodle administration, enable the plugin (Admin block > Plugins > Authentication)
 3. in the plugin settings, follow the displayed instructions.
 
+
+
 ### Custom Provider
 We have added `/classes/provider/crana.php` as the custom provider.
 
 ### Composer (for devs)
+If you install this into a Moodle system with composer, you can just symlink the plugin into the auth directory.
+
+    cd auth
+    ln -s ../../../hut6/moodle-auth_googleoauth2 googleoauth2
+
 The library includes the entire vendor content in the repository (so don't run composer). It makes it for me easy to download the zip file from Github and then to upload it straight away in Moodle.org. 
 Moodle.org is not able to create a package from Github (with vendor libs) yet.
 
