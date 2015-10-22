@@ -162,6 +162,11 @@ function auth_googleoauth2_render_buttons() {
         $html .= $provider->html_button($authurl, $providerdisplaystyle);
     }
 
+    /* For single provider, go directly to auth page (unless query string redirect=0) */
+    if($providerscount === 1 && optional_param('redirect', true, PARAM_ALPHANUM) !== '0') {
+        redirect($authurl);
+    }
+
     if (!$allauthproviders and !empty($authprovider) and $providerscount > 1) {
         $html .= '<br /><br />
            <div class="moreproviderlink">
