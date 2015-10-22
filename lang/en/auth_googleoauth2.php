@@ -91,6 +91,17 @@ $string['auth_messengerclientid'] = 'Your Client ID/Secret can be generated in y
 $string['auth_messengerclientid_key'] = 'Messenger Client ID';
 $string['auth_messengerclientsecret'] = '';
 $string['auth_messengerclientsecret_key'] = 'Messenger Client secret';
+
+$string['auth_cranaclientid'] = 'Ask your developer to provide these values for you:
+<br/>App website: {$a->siteurl}
+<br/>Redirect URIs: {$a->callbackurl}';
+$string['auth_cranaclientid_key'] = 'CRANAplus Client ID';
+$string['auth_cranaclientsecret'] = '';
+$string['auth_cranaclientsecret_key'] = 'CRANAplus Client Secret';
+$string['auth_cranaidentity_provider'] = 'Identity Provider (Domain)';
+
+
+
 $string['auth_googlesettings'] = 'Settings';
 $string['couldnotauthenticate'] = 'The authentication failed - Please try to sign-in again.';
 $string['couldnotgetgoogleaccesstoken'] = 'The authentication provider sent us a communication error. Please try to sign-in again.';

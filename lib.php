@@ -42,7 +42,7 @@ function googleoauth2_html_button($authurl, $providerdisplaystyle, $provider) {
  * @return array
  */
 function provider_list() {
-    return array('google', 'facebook', 'battlenet', 'github', 'linkedin', 'messenger', 'vk', 'dropbox');
+    return array('crana');
 }
 
 /**
