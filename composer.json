@@ -1,4 +1,5 @@
 {
+    "name": "hut6/moodle-auth_googleoauth2",
     "repositories": [
       {
         "type": "vcs",
