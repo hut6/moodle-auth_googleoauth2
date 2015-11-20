@@ -90,6 +90,17 @@ class provideroauth2crana extends \League\OAuth2\Client\Provider\AbstractProvide
         return self::BASE . '/oauth/v2/token?grant_type=authorization_code';
     }
 
+    /**
+     * Get the URL that this provider uses to request user details.
+     *
+     * Since this URL is typically an authorized route, most providers will require you to pass the access_token as
+     * a parameter to the request. For example, the google url is:
+     *
+     * 'https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token='.$token
+     *
+     * @param \League\OAuth2\Client\Token\AccessToken $token
+     * @return string
+     */
     public function urlUserDetails(\League\OAuth2\Client\Token\AccessToken $token)
     {
         return self::BASE . '/api/v2/user?access_token=' . $token;
