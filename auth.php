@@ -494,7 +494,7 @@ class auth_plugin_googleoauth2 extends auth_plugin_base {
 
             echo '</td><td>';
 
-            print_string('auth_'.$basename, 'auth_googleoauth2');
+            print_string('auth_'.$clientsecretname, 'auth_googleoauth2');
 
             echo '</td></tr>';
 
