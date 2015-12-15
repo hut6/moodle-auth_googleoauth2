@@ -23,6 +23,7 @@ class provideroauth2crana extends \League\OAuth2\Client\Provider\AbstractProvide
     public $name = 'crana'; // It must be the same as the XXXXX in the class name provideroauth2XXXXX.
     public $readablename = 'CRANAplus';
     public $scopes = array();
+    public $base;
 
 //    public $authorizationHeader = 'Bearer';
 
@@ -36,6 +37,8 @@ class provideroauth2crana extends \League\OAuth2\Client\Provider\AbstractProvide
      */
     public function __construct() {
         global $CFG;
+
+        $this->base = get_config('auth/googleoauth2', $this->name . 'base');
 
         parent::__construct([
             'clientId'      => get_config('auth/googleoauth2', $this->name . 'clientid'),
@@ -54,7 +57,8 @@ class provideroauth2crana extends \League\OAuth2\Client\Provider\AbstractProvide
      * @throws dml_exception
      */
     public function isenabled() {
-        return (get_config('auth/googleoauth2', $this->name . 'clientid')
+        return (get_config('auth/googleoauth2', $this->name . 'base')
+            && get_config('auth/googleoauth2', $this->name . 'clientid')
             && get_config('auth/googleoauth2', $this->name . 'clientsecret'));
     }
 
@@ -77,7 +81,7 @@ class provideroauth2crana extends \League\OAuth2\Client\Provider\AbstractProvide
      */
     public function urlAuthorize()
     {
-        return self::BASE . '/oauth/v2/auth';
+        return $this->base . '/oauth/v2/auth';
     }
 
     /**
@@ -87,7 +91,7 @@ class provideroauth2crana extends \League\OAuth2\Client\Provider\AbstractProvide
      */
     public function urlAccessToken()
     {
-        return self::BASE . '/oauth/v2/token?grant_type=authorization_code';
+        return $this->base . '/oauth/v2/token?grant_type=authorization_code';
     }
 
     /**
@@ -103,7 +107,7 @@ class provideroauth2crana extends \League\OAuth2\Client\Provider\AbstractProvide
      */
     public function urlUserDetails(\League\OAuth2\Client\Token\AccessToken $token)
     {
-        return self::BASE . '/api/v2/user?access_token=' . $token;
+        return $this->base . '/api/v2/user?access_token=' . $token;
     }
 
     public function userDetails($response, \League\OAuth2\Client\Token\AccessToken $token)

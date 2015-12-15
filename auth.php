@@ -431,6 +431,7 @@ class auth_plugin_googleoauth2 extends auth_plugin_base {
 
             $clientidname = $providername . 'clientid';
             $clientsecretname = $providername . 'clientsecret';
+            $basename = $providername . 'base';
 
             // Set to defaults if undefined.
             if (!isset($config->{$clientidname})) {
@@ -438,6 +439,9 @@ class auth_plugin_googleoauth2 extends auth_plugin_base {
             }
             if (!isset($config->{$clientsecretname})) {
                 $config->{$clientsecretname} = '';
+            }
+            if (!isset($config->{$basename})) {
+                $config->{$basename} = '';
             }
 
             // Client id.
@@ -490,9 +494,32 @@ class auth_plugin_googleoauth2 extends auth_plugin_base {
 
             echo '</td><td>';
 
-            print_string('auth_'.$clientsecretname, 'auth_googleoauth2');
+            print_string('auth_'.$basename, 'auth_googleoauth2');
 
             echo '</td></tr>';
+
+            // Base URL (optional)
+            echo '<tr>
+                <td align="right"><label for="'.$basename.'">';
+
+            print_string('auth_'.$basename.'_key', 'auth_googleoauth2');
+
+            echo '</label></td><td>';
+
+            echo html_writer::empty_tag('input',
+                array('type' => 'text', 'id' => $basename, 'name' => $basename,
+                    'class' => $basename, 'value' => $config->{$basename}));
+
+            if (isset($err[$basename])) {
+                echo $OUTPUT->error_text($err[$basename]);
+            }
+
+            echo '</td><td>';
+
+            print_string('auth_'.$basename, 'auth_googleoauth2');
+
+            echo '</td></tr>';
+
         }
 
         if (!isset($config->googleipinfodbkey)) {
@@ -605,6 +632,7 @@ class auth_plugin_googleoauth2 extends auth_plugin_base {
         foreach ($providers as $providername) {
             $clientidname = $providername . 'clientid';
             $clientsecretname = $providername . 'clientsecret';
+            $basename = $providername . 'base';
 
             // Set to defaults if undefined.
             if (!isset($config->{$clientidname})) {
@@ -613,10 +641,14 @@ class auth_plugin_googleoauth2 extends auth_plugin_base {
             if (!isset($config->{$clientsecretname})) {
                 $config->{$clientsecretname} = '';
             }
+            if (!isset($config->{$basename})) {
+                $config->{$basename} = '';
+            }
 
             // Save settings.
             set_config($clientidname, $config->{$clientidname}, 'auth/googleoauth2');
             set_config($clientsecretname, $config->{$clientsecretname}, 'auth/googleoauth2');
+            set_config($basename, $config->{$basename}, 'auth/googleoauth2');
         }
 
         if (!isset ($config->googleuserprefix)) {

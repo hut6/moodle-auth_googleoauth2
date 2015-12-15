@@ -98,6 +98,7 @@ $string['auth_cranaclientid'] = 'Ask your developer to provide these values for 
 $string['auth_cranaclientid_key'] = 'CRANAplus Client ID';
 $string['auth_cranaclientsecret'] = '';
 $string['auth_cranaclientsecret_key'] = 'CRANAplus Client Secret';
+$string['auth_cranabase_key'] = 'Base URL';
 $string['auth_cranaidentity_provider'] = 'Identity Provider (Domain)';
 
 
