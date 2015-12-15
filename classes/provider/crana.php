@@ -18,16 +18,11 @@ require_once($CFG->dirroot . '/auth/googleoauth2/vendor/autoload.php');
 
 class provideroauth2crana extends \League\OAuth2\Client\Provider\AbstractProvider {
 
-    // THE VALUES YOU WANT TO CHANGE WHEN CREATING A NEW PROVIDER.
     public $sskstyle = 'crana';
     public $name = 'crana'; // It must be the same as the XXXXX in the class name provideroauth2XXXXX.
     public $readablename = 'CRANAplus';
     public $scopes = array();
-    public $base;
-
-//    public $authorizationHeader = 'Bearer';
-
-    const BASE = 'https://vagrant.dw.gg';
+    public $base; // Base URL
 
     /**
      * Constructor.
@@ -124,13 +119,4 @@ class provideroauth2crana extends \League\OAuth2\Client\Provider\AbstractProvide
 
         return $user;
     }
-
-//    public function getAuthorizationUrl($options = array())
-//    {
-//        $url = parent::getAuthorizationUrl($options);
-//
-//        $url .= '&' . $this->httpBuildQuery(['response_type'=> 'code']);
-//
-//        return $url;
-//    }
 }
