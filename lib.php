@@ -163,7 +163,7 @@ function auth_googleoauth2_render_buttons() {
     }
 
     /* For single provider, go directly to auth page (unless query string redirect=0) */
-    if($providerscount === 1 && optional_param('redirect', true, PARAM_ALPHANUM) !== '0') {
+    if($providerscount === 1 && optional_param('redirect', true, PARAM_BOOL)) {
         redirect($authurl);
     }
 
