@@ -681,4 +681,16 @@ class auth_plugin_googleoauth2 extends auth_plugin_base {
         }
         return true;
     }
+
+    /**
+     * Hook for logout page
+     */
+    public function logoutpage_hook() {
+        global $USER, $redirect;
+
+        // Only do this if the user is actually logged in via CAS
+        if ($USER->auth === $this->authtype) {
+            $redirect = $this->config->cranabase . '/account/logout';
+        }
+    }
 }
