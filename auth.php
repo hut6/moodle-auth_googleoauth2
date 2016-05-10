@@ -690,7 +690,7 @@ class auth_plugin_googleoauth2 extends auth_plugin_base {
 
         // Only do this if the user is actually logged in via CAS
         if ($USER->auth === $this->authtype) {
-            $redirect = $this->config->cranabase . '/account/logout';
+            $redirect = $this->config->cranabase . '/account/logout?continue=' . rawurldecode((!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/');
         }
     }
 }
