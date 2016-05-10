@@ -1,3 +1,7 @@
 {
-  "name": "hut6/moodle-auth_googleoauth2"
+  "name": "hut6/moodle-auth_googleoauth2",
+  "scripts": {
+    "post-install-cmd": "hut6/moodle-auth_googleoauth2: run `composer setup` to install into default directory",
+    "setup": "rm -rf $HOME/public_html/moodle/auth/googleoauth2; cp -r vendor/hut6/moodle-auth_googleoauth2/ $HOME/public_html/moodle/auth/googleoauth2"
+  }
 }
